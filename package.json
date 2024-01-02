@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --no-open",
     "start": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
@@ -50,7 +50,12 @@
       "prettier"
     ],
     "rules": {
-      "prettier/prettier": "error",
+      "prettier/prettier": [
+        "error",
+        {
+          "endOfLine": "auto"
+        }
+      ],
       "react/jsx-no-target-blank": "off"
     }
   },

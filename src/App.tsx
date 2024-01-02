@@ -1,5 +1,11 @@
+import Playground from "./components/Playground"
+
 function App() {
-  return <div>App</div>
+  return (
+    <div>
+      <Playground />
+    </div>
+  )
 }
 
 export default App
