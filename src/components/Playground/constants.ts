@@ -1,6 +1,6 @@
 import { IMapArrow } from "./types"
 
-export const INTERVAL_TIME = 1000
+export const INTERVAL_TIME = 3000
 
 export const MapArrows: IMapArrow = {
   ArrowDown: "⬇️",

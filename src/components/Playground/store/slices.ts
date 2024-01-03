@@ -19,11 +19,16 @@ const playgroundSlice = createSlice({
       const randomNumber = Math.floor(Math.random() * ArrArrowKeys.length)
       state.steps.push({
         currentValue: ArrArrowKeys[randomNumber] as keyof IMapArrow,
+        enteredValue: null,
       })
+    },
+    setEnteredValue: (state, action) => {
+      state.steps[state.currentStep - 1].enteredValue = action.payload
     },
   },
 })
 
-export const { setCurrentStep, setStep } = playgroundSlice.actions
+export const { setCurrentStep, setStep, setEnteredValue } =
+  playgroundSlice.actions
 
 export const { reducer: playgroundReducer } = playgroundSlice

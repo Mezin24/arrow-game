@@ -4,6 +4,7 @@ import Controllers from "./components/Controllers"
 import { setCurrentStep, setStep } from "./store/slices"
 import { INTERVAL_TIME } from "./constants"
 import RandomKeys from "./components/RandomKeys"
+import KeyPressed from "./components/KeyPressed"
 
 const Playground = () => {
   const [isTimerActive, setIsTimerActive] = useState<boolean>(false)
@@ -27,11 +28,12 @@ const Playground = () => {
   return (
     <div>
       <h1>{currentStep}</h1>
-      <RandomKeys isTimerActive={isTimerActive} />
       <Controllers
         isTimerActive={isTimerActive}
         setIsTimerActive={setIsTimerActive}
       />
+      <RandomKeys isTimerActive={isTimerActive} />
+      <KeyPressed isTimerActive={isTimerActive} />
     </div>
   )
 }
