@@ -1,8 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { IPlayrground } from "./types"
+import { IPlayground } from "./types"
+import { ArrArrowKeys } from "../constants"
+import { IMapArrow } from "../types"
 
-const initialState: IPlayrground = {
+const initialState: IPlayground = {
   currentStep: 0,
+  steps: [],
 }
 
 const playgroundSlice = createSlice({
@@ -12,8 +15,15 @@ const playgroundSlice = createSlice({
     setCurrentStep: (state) => {
       state.currentStep += 1
     },
+    setStep: (state) => {
+      const randomNumber = Math.floor(Math.random() * ArrArrowKeys.length)
+      state.steps.push({
+        currentValue: ArrArrowKeys[randomNumber] as keyof IMapArrow,
+      })
+    },
   },
 })
 
-export const { actions: playgroundActions, reducer: playgroundReducer } =
-  playgroundSlice
+export const { setCurrentStep, setStep } = playgroundSlice.actions
+
+export const { reducer: playgroundReducer } = playgroundSlice

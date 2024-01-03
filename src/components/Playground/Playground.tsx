@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react"
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import Controllers from "./components/Controllers"
-import { playgroundActions } from "./store/slices"
+import { setCurrentStep, setStep } from "./store/slices"
 import { INTERVAL_TIME } from "./constants"
+import RandomKeys from "./components/RandomKeys"
 
 const Playground = () => {
   const [isTimerActive, setIsTimerActive] = useState<boolean>(false)
@@ -13,7 +14,8 @@ const Playground = () => {
   useEffect(() => {
     if (isTimerActive) {
       refreshTimerId.current = setInterval(() => {
-        dispatch(playgroundActions.setCurrentStep())
+        dispatch(setCurrentStep())
+        dispatch(setStep())
       }, INTERVAL_TIME)
     } else {
       clearInterval(refreshTimerId.current as NodeJS.Timeout)
@@ -25,6 +27,7 @@ const Playground = () => {
   return (
     <div>
       <h1>{currentStep}</h1>
+      <RandomKeys isTimerActive={isTimerActive} />
       <Controllers
         isTimerActive={isTimerActive}
         setIsTimerActive={setIsTimerActive}
