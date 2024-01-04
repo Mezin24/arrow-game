@@ -4,6 +4,7 @@ import { useCallback } from "react"
 import { useAppDispatch } from "../../../../app/hooks"
 import { resetStore } from "../../store/slices"
 import ResultMessage from "./components/ResultMessage"
+import { Button } from "../../../UI"
 
 export interface IModalProps {
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>
@@ -24,7 +25,7 @@ const Modal = (props: IModalProps) => {
       <h3>Modal</h3>
       <h2>{isEndGameSuccess ? "Win" : "Lose"}</h2>
       <ResultMessage isEndGameSuccess={isEndGameSuccess} />
-      <button onClick={handleClick}>Play Again</button>
+      <Button onClick={handleClick}>Play Again</Button>
     </div>
   )
 }

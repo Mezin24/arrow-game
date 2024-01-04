@@ -19,7 +19,6 @@ const KeyPressed = (props: IKeyPressedProps) => {
   const handleKeyPress = useCallback(
     (e: KeyboardEvent) => {
       if (ArrArrowKeys.includes(e.key) && isTimerActive) {
-        console.log(MapArrows[e.key as keyof IMapArrow])
         dispatch(setEnteredValue(e.key))
       }
     },

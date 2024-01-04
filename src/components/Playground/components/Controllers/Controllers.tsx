@@ -1,4 +1,6 @@
-// import styles from "./Controllers.module.css"
+import { Button } from "../../../UI"
+import styles from "./Controllers.module.css"
+import { PlayArrow, Pause } from "@mui/icons-material"
 
 export interface IControllersProps {
   isTimerActive: boolean
@@ -10,12 +12,22 @@ const Controllers = (props: IControllersProps) => {
 
   return (
     <div>
-      <button onClick={() => setIsTimerActive(true)} disabled={isTimerActive}>
+      <Button
+        className={styles.button}
+        onClick={() => setIsTimerActive(true)}
+        disabled={isTimerActive}
+        endIcon={<PlayArrow />}
+      >
         Play
-      </button>
-      <button onClick={() => setIsTimerActive(false)} disabled={!isTimerActive}>
+      </Button>
+      <Button
+        className={styles.button}
+        onClick={() => setIsTimerActive(false)}
+        disabled={!isTimerActive}
+        endIcon={<Pause />}
+      >
         Pause
-      </button>
+      </Button>
     </div>
   )
 }
