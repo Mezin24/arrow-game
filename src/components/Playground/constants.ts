@@ -1,6 +1,6 @@
-import { IMapArrow } from "./types"
+import { IEnd_Game_Options, IMapArrow } from "./types"
 
-export const INTERVAL_TIME = 3000
+export const INTERVAL_TIME = 1000
 
 export const MapArrows: IMapArrow = {
   ArrowDown: "⬇️",
@@ -10,3 +10,7 @@ export const MapArrows: IMapArrow = {
 }
 
 export const ArrArrowKeys = Object.keys(MapArrows)
+export const END_GAME_OPTIONS: IEnd_Game_Options = {
+  SUCCESS_END: 3,
+  UNSUCCESS_END: 3,
+}

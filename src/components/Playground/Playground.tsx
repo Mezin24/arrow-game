@@ -1,20 +1,28 @@
 import { useEffect, useRef, useState } from "react"
 import { useAppDispatch, useAppSelector } from "../../app/hooks"
 import Controllers from "./components/Controllers"
-import { setCurrentStep, setStep } from "./store/slices"
-import { INTERVAL_TIME } from "./constants"
+import { setCurrentStep, setStep, setUnsuccess } from "./store/slices"
+import { END_GAME_OPTIONS, INTERVAL_TIME } from "./constants"
 import RandomKeys from "./components/RandomKeys"
 import KeyPressed from "./components/KeyPressed"
+import Score from "./components/Score"
+import Modal from "./components/Modal"
 
 const Playground = () => {
   const [isTimerActive, setIsTimerActive] = useState<boolean>(false)
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
+  const [isEndGameSuccess, setIsEndGameSuccess] = useState<boolean>(false)
+
   const refreshTimerId = useRef<ReturnType<typeof setInterval> | null>(null)
-  const { currentStep } = useAppSelector((state) => state.playground)
+  const { currentStep, totalSuccessful, totalUnsuccessful } = useAppSelector(
+    (state) => state.playground,
+  )
   const dispatch = useAppDispatch()
 
   useEffect(() => {
     if (isTimerActive) {
       refreshTimerId.current = setInterval(() => {
+        dispatch(setUnsuccess())
         dispatch(setCurrentStep())
         dispatch(setStep())
       }, INTERVAL_TIME)
@@ -25,6 +33,19 @@ const Playground = () => {
     return () => clearInterval(refreshTimerId.current as NodeJS.Timeout)
   }, [dispatch, isTimerActive])
 
+  useEffect(() => {
+    const isSuccess = totalSuccessful === END_GAME_OPTIONS.SUCCESS_END
+    const isUnsuccess = totalUnsuccessful === END_GAME_OPTIONS.UNSUCCESS_END
+
+    isSuccess && setIsEndGameSuccess(true)
+    isUnsuccess && setIsEndGameSuccess(false)
+
+    if (isSuccess || isUnsuccess) {
+      setIsModalOpen(true)
+      setIsTimerActive(false)
+    }
+  }, [totalSuccessful, totalUnsuccessful])
+
   return (
     <div>
       <h1>{currentStep}</h1>
@@ -34,6 +55,13 @@ const Playground = () => {
       />
       <RandomKeys isTimerActive={isTimerActive} />
       <KeyPressed isTimerActive={isTimerActive} />
+      <Score />
+      {isModalOpen && (
+        <Modal
+          isEndGameSuccess={isEndGameSuccess}
+          setIsModalOpen={setIsModalOpen}
+        />
+      )}
     </div>
   )
 }

@@ -1,25 +1,23 @@
-// import styles from "./RandomKeys.module.css"
+import { useAppSelector } from "../../../../app/hooks"
+import RandomArrows from "./components/RandomArrows"
+import WelcomeText from "./components/WelcomeText"
 
-import { useAppDispatch, useAppSelector } from "../../../../app/hooks"
-import { MapArrows } from "../../constants"
-import { IMapArrow } from "../../types"
-
-export interface IRandomKeysProps {
+interface IRandomKeys {
   isTimerActive: boolean
 }
 
-const RandomKeys = (props: IRandomKeysProps) => {
+const RandomKeys = (props: IRandomKeys) => {
   const { isTimerActive } = props
   const { steps } = useAppSelector((state) => state.playground)
-  const dispatch = useAppDispatch()
 
   return (
     <div>
-      {steps.map((step, index) => (
-        <span key={index}>
-          {MapArrows[step.currentValue as keyof IMapArrow]}
-        </span>
-      ))}
+      <h3>RandomKeys</h3>
+      {steps.length === 0 ? (
+        <WelcomeText isTimerActive={isTimerActive} />
+      ) : (
+        <RandomArrows />
+      )}
     </div>
   )
 }

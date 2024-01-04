@@ -4,3 +4,8 @@ export interface IMapArrow {
   ArrowLeft: string
   ArrowRight: string
 }
+
+export interface IEnd_Game_Options {
+  SUCCESS_END: number
+  UNSUCCESS_END: number
+}
