@@ -1,4 +1,5 @@
 import { useAppSelector } from "../../../../app/hooks"
+import { TypographyHeader } from "../../../UI"
 import RandomArrows from "./components/RandomArrows"
 import WelcomeText from "./components/WelcomeText"
 
@@ -12,7 +13,7 @@ const RandomKeys = (props: IRandomKeys) => {
 
   return (
     <div>
-      <h3>RandomKeys</h3>
+      <TypographyHeader>RandomKeys</TypographyHeader>
       {steps.length === 0 ? (
         <WelcomeText isTimerActive={isTimerActive} />
       ) : (

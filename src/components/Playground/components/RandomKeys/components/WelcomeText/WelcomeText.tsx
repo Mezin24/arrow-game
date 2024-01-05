@@ -1,4 +1,8 @@
-// import styles from "./WelcomeText.module.css"
+import stylesCommon from "../../RandomKeys.module.css"
+import styles from "./WelcomeText.module.css"
+import loader from "./img/loader.svg"
+
+import { TypographyText } from "../../../../../UI"
 
 export interface IWelcomeTextProps {
   isTimerActive: boolean
@@ -8,13 +12,19 @@ const WelcomeText = (props: IWelcomeTextProps) => {
   const { isTimerActive } = props
 
   if (isTimerActive) {
-    return <span>Loading...</span>
+    return (
+      <div className={stylesCommon.wrapper}>
+        <span className={stylesCommon.icon}>
+          <img src={loader} alt="loader" className={styles.loader} />
+        </span>
+      </div>
+    )
   }
 
   return (
-    <span>
+    <TypographyText>
       Press "Play" to start the game and wait for the first arrow to appear
-    </span>
+    </TypographyText>
   )
 }
 

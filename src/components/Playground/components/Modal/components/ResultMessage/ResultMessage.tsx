@@ -1,4 +1,6 @@
-// import styles from "./ResultMessage.module.css"
+import styles from "./ResultMessage.module.css"
+
+import { TypographyText } from "../../../../../UI"
 
 export interface IResultMessageProps {
   isEndGameSuccess: boolean
@@ -7,14 +9,18 @@ export interface IResultMessageProps {
 const ResultMessage = (props: IResultMessageProps) => {
   const { isEndGameSuccess } = props
 
-  return isEndGameSuccess ? (
-    <span>
-      Congratulation! <br /> You win this game!
-    </span>
-  ) : (
-    <span>
-      My regrets. <br /> You have lost this game.
-    </span>
+  return (
+    <div className={styles.wrapper}>
+      {isEndGameSuccess ? (
+        <TypographyText className={styles.text}>
+          Congratulations! <br /> You win!
+        </TypographyText>
+      ) : (
+        <TypographyText className={styles.text}>
+          My regrets. <br /> You have lost this game
+        </TypographyText>
+      )}
+    </div>
   )
 }
 
