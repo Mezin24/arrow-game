@@ -3,7 +3,7 @@ import { IPlayground } from "./types"
 import { ArrArrowKeys } from "../constants"
 import { IMapArrow } from "../types"
 
-const initialState: IPlayground = {
+export const initialState: IPlayground = {
   currentStep: 0,
   steps: [],
   totalSuccessful: 0,
