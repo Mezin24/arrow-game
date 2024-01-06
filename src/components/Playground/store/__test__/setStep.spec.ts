@@ -9,7 +9,6 @@ describe("setStep", () => {
   it("check setStep", () => {
     const setCurrentStepState = playgroundReducer(initialState, setCurrentStep)
     const setStepState = playgroundReducer(setCurrentStepState, setStep)
-    console.log(setStepState)
     const firstStep = {
       currentValue: setStepState.steps[0].currentValue,
       enteredValue: null,
